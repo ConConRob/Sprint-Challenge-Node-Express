@@ -26,13 +26,23 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 - [ ] Mention two parts of Express that you learned about this week.
 
+Two parts of express we learned about was the Server and the Router functions. Server is used to setup a server while Router is used to chunck the server into smaller files that are more meaningful to a specific route.
+
 - [ ] Describe Middleware?
+
+Middleware are functions that are run to requests that are made to the server. Express is used by basically stacking a bunch of middleware. It can come out of the box with express, from npm as a third party, or built as a custom midleware by yourself.
 
 - [ ] Describe a Resource?
 
+A resource is using someone elses solution to a coding problem. If someone else has already done something that would work for you and it's free save yourself the headache by considering using it.
+
 - [ ] What can the API return to help clients know if a request was successful?
 
+A response shoulkd contain a status code to let the front end dev know what happened with the request.
+
 - [ ] How can we partition our application into sub-applications?
+
+A express server can be partitioned by using router and exporting the routes for a specific set of endpoints.
 
 ## Project Setup
 
