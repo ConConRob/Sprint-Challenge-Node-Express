@@ -1,9 +1,8 @@
 const express = require("express");
-const helmet = require("helmet")
+const helmet = require("helmet");
 
-const projectRoutes = require("./routes/projectsRoutes")
-const actionRoutes = require("./routes/actionsRoutes")
-
+const projectRoutes = require("./routes/projectsRoutes");
+const actionRoutes = require("./routes/actionsRoutes");
 
 const server = express();
 

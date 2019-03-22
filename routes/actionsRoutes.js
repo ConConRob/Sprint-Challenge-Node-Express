@@ -5,13 +5,11 @@ const routes = express.Router();
 routes.use(express.json());
 
 routes.post("/", (req, res) => {
-  const {  project_id, description, notes } = req.body;
+  const { project_id, description, notes } = req.body;
   if (!project_id || !description || !notes) {
-    res
-      .status(400)
-      .json({
-        message: "A name and description is required to do this request"
-      });
+    res.status(400).json({
+      message: "A name and description is required to do this request"
+    });
   } else {
     Actions.insert(req.body)
       .then(data => {
@@ -68,13 +66,11 @@ routes.delete("/:id", async (req, res) => {
 });
 
 routes.put("/:id", (req, res) => {
-  const {  project_id, description, notes } = req.body;
+  const { project_id, description, notes } = req.body;
   if (!project_id || !description || !notes) {
-    res
-      .status(400)
-      .json({
-        message: "A name and description is required to do this request"
-      });
+    res.status(400).json({
+      message: "A name and description is required to do this request"
+    });
   } else {
     Actions.update(req.params.id, req.body)
       .then(data => {
