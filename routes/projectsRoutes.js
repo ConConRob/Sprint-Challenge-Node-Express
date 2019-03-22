@@ -1,16 +1,20 @@
 const express = require("express");
-const Projects = require("../data/helpers/projectModel")
+const Projects = require("../data/helpers/projectModel");
 
 const routes = express.Router();
 routes.use(express.json());
 
 routes.post("/", (req, res) => {
-  const {name, description} = req.body;
-  if(!name || !description){
-    res.status(400).json({ message: "A name and description is required to do this request" });
+  const { name, description } = req.body;
+  if (!name || !description) {
+    res
+      .status(400)
+      .json({
+        message: "A name and description is required to do this request"
+      });
   } else {
     Projects.insert(req.body)
-      .then( data => {
+      .then(data => {
         if (data) {
           res.status(201).json(data);
         } else {
@@ -21,7 +25,7 @@ routes.post("/", (req, res) => {
         res.status(500).json({ message: "Server error", error: err });
       });
   }
-})
+});
 
 routes.get("/", (req, res) => {
   Projects.get()
@@ -43,14 +47,11 @@ routes.get("/:id", (req, res) => {
       }
     })
     .catch(err => {
-      console.log(err)
       res.status(500).json({ message: "server error", error: err });
     });
 });
 
 routes.delete("/:id", async (req, res) => {
-  // need to delete the posts
-
   Projects.remove(req.params.id)
     .then(data => {
       if (!data) {
@@ -67,9 +68,13 @@ routes.delete("/:id", async (req, res) => {
 });
 
 routes.put("/:id", (req, res) => {
-  const {name, description} = req.body;
-  if(!name || !description){
-    res.status(400).json({ message: "A name and description is required to do this request" });
+  const { name, description } = req.body;
+  if (!name || !description) {
+    res
+      .status(400)
+      .json({
+        message: "A name and description is required to do this request"
+      });
   } else {
     Projects.update(req.params.id, req.body)
       .then(data => {
@@ -84,5 +89,19 @@ routes.put("/:id", (req, res) => {
       });
   }
 });
+
+routes.get("/:id/actions", (req,res) => {
+  Projects.getProjectActions(req.params.id)
+  .then(data => {
+    if (!data) {
+      res.status(404).json({ message: "That project does not exist" });
+    } else {
+      res.status(200).json(data);
+    }
+  })
+  .catch(err => {
+    res.status(500).json({ message: "server error", error: err });
+  });
+})
 
 module.exports = routes;
